@@ -2,5 +2,8 @@
 The Crackoning's Website - A Discord Community
 
 # License
-Everything in this repository is (by default) licensed under the MIT License. A copy of it is provided in the root of the directory.
-Other folders may contain a LICENSE, LICENSE.md or LICENSE.txt file of their own, the MIT License does not apply to them, but the license provided in those files.
+I have made up my mind and decided that it's too big of a hassle for me to license everything properly, because I would like to license the text as well, but because code and text are contained in the same file I've decided to just not care at all. I'm sorry but I can't do this.
+So, no license means don't you dare use anything I supply here.
+
+But you're allowed to look at my code and learn from it :3
+I can't disallow that, can I? That's why it's open source.
