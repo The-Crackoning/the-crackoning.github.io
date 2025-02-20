@@ -1,0 +1,121 @@
+@supports (font-variation-settings: "wght" 1) {
+    /* CSS for browsers that support variable fonts */
+    /* Open Sans */
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-variable/OpenSans-VariableFont_wdth\,wght.ttf) format("truetype-variations");
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-variable/OpenSans-Italic-VariableFont_wdth\,wght.ttf) format("truetype-variations");
+        font-style: italic;
+    }
+    /* Noto Emoji */
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-variable/NotoEmoji-VariableFont_wght.ttf) format("truetype-variations");
+        font-style: normal;
+    }
+}
+@supports not (font-variation-settings: "wght" 1) {
+    /* CSS for browsers that do not support variable fonts */
+    /* Open Sans */
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-Light.ttf);
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-Regular.ttf);
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-SemiBold.ttf);
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-Bold.ttf);
+        font-weight: 600;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-ExtraBold.ttf);
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-LightItalic.ttf);
+        font-weight: 300;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-Italic.ttf);
+        font-weight: 400;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-SemiBoldItalic.ttf);
+        font-weight: 500;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-BoldItalic.ttf);
+        font-weight: 600;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(../font/OpenSans-static/OpenSans-ExtraBoldItalic.ttf);
+        font-weight: 700;
+        font-style: italic;
+    }
+    /* Noto Emoji */
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-static/NotoEmoji-Light.ttf);
+        font-weight: 300;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-static/NotoEmoji-Regular.ttf);
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-static/NotoEmoji-Medium.ttf);
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-static/NotoEmoji-SemiBold.ttf);
+        font-weight: 600;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: NotoEmoji;
+        src: url(../font/noto-emoji-static/NotoEmoji-Bold.ttf);
+        font-weight: 700;
+        font-style: normal;
+    }
+}
+@font-face {
+    font-family: NotoColorEmoji;
+    src: url(../font/noto-color-emoji/NotoColorEmoji-Regular.ttf);
+    font-weight: 700;
+    font-style: normal;
+}

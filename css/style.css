@@ -1,0 +1,723 @@
+:root {
+    --background: #0a0315;
+    --darkest: #1c083b;
+    --darker: #2e0d61;
+    --dark: #401287;
+    --light: #742aaa;
+    --lighter: #9737dd;
+    --lightest: #e555f5;
+    --lightest-hover: #f2aafa;
+    --text: #fff;
+    --black: #000;
+
+    --dark-gray: #222;
+    --darkest-gray: #070707;
+
+    --font-size: 16px;
+    --fill-available: 100%;
+
+    --body-max-width: 90em;
+    --header-height: 5em;
+    --footer-height: 6em;
+
+    --card-distance: 3em;
+    --card-small-distance: 1.5em;
+    --card-radius: 1em;
+    --wall-radius: 2em;
+
+    --section-min-height: 40em;
+    --section-smaller-height: 30em;
+
+    --img-large: min(calc(var(--body-max-width) * 0.4), 40vw);
+}
+
+@supports (width: -moz-available) {
+    :root {
+        --fill-available: -moz-available;
+    }
+}
+@supports (width: -webkit-fill-available) {
+    :root {
+        --fill-available: -webkit-fill-available;
+    }
+}
+
+html {
+    color: var(--text);
+    background-color: var(--background);
+    font-family: OpenSans, NotoColorEmoji, Arial, Helvetica, sans-serif;
+    font-size: var(--font-size);
+}
+@media (max-width: 640px) {
+    html {
+        font-size: 2.5vw;
+    }
+}
+body {
+    max-width: var(--body-max-width);
+    margin: 0 max(calc((100vw - var(--body-max-width)) * 0.5), 0em);
+}
+header {
+    height: var(--header-height);
+    position: sticky;
+    z-index: 5;
+    top: 0;
+    > * {
+        height: 100%;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        background-color: var(--darkest);
+        /* max-width: var(--body-max-width); */
+        box-shadow: var(--background) 0em 1em 3em;
+        --line-height: 1em;
+        line-height: var(--line-height);
+    }
+}
+header > * {
+    font-size: 0.8em;
+    overflow: clip;
+}
+header > * > * {
+    align-self: flex-start;
+    box-sizing: border-box;
+}
+header:hover > *, header:focus > *, header > *:has(:focus) {
+    min-height: 100%;
+    height: max-content;
+    overflow: visible;
+}
+header > * > * > * {
+    height: var(--card-distance);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+main {
+    min-height: calc(100vh - var(--footer-height) - var(--header-height));
+    padding: 0.016px 0;
+}
+section {
+    min-height: var(--section-min-height);
+}
+section.smaller {
+    min-height: var(--section-smaller-height);
+}
+footer {
+    position: absolute;
+    left: 0;
+    right: 100%;
+    width: 100%;
+    min-height: var(--footer-height);
+    /* background: var(--dark-gray); */
+    background: linear-gradient(180deg, transparent 0%, var(--black) 20%, var(--black) 100%);
+}
+footer > * {
+    font-size: 0.8em;
+}
+a {
+    color: currentColor;
+    user-select: none;
+}
+a:hover {
+    opacity: 0.75;
+}
+a:hover:active {
+    opacity: 0.25;
+}
+a:active {
+    opacity: 0.5;
+}
+a[data-obvlink] { /* remove underline if in header */
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0;
+}
+h1 {
+    font-size: 2em;
+    font-weight: 900;
+}
+h2 {
+    font-size: 1.66em;
+    font-weight: 700;
+}
+h3 {
+    font-size: 1.33em;
+}
+h4 {
+    font-size: 1em;
+}
+h5 {
+    font-size: 0.8em;
+}
+h6 {
+    font-size: 0.6em;
+}
+h1 > .subh, h2 > .subh, h3 > .subh, h4 > .subh, h5 > .subh, h6 > .subh {
+    font-size: 0.5em;
+    font-weight: normal;
+    font-style: normal;
+}
+ul, ol {
+    padding-inline-start: 2.5em;
+}
+button {
+    background-color: var(--dark);
+    border: 0;
+    font-size: 1em;
+    padding: 1em;
+    border-radius: var(--card-radius);
+    text-shadow: var(--background) 0em 0em 0.4em;
+    box-shadow: rgb(from var(--background) r g b / 0.5) 0.4em 0.4em 1em;
+    transition: background-color 0.5s ease-in-out;
+    user-select: none;
+}
+button:hover {
+    background-color: var(--light);
+    transition: background-color 0.2s ease-in-out;
+}
+button:hover:active {
+    background-color: var(--lightest);
+    transition: background-color 0s ease-in-out;
+}
+button:active {
+    background-color: var(--lighter);
+    transition: background-color 0.3s ease-in-out;
+}
+a:has(button) {
+    opacity: 1 !important;
+}
+::selection {
+    background-color: var(--lightest);
+    color: var(--background);
+    text-shadow: var(--light) 0.05em 0.05em 0;
+}
+[tabindex]:focus-visible {
+    outline: none;
+}
+a:focus-visible, button:focus-visible {
+    outline: solid var(--lighter) calc(var(--font-size) * 0.2);
+    &:where(a) {
+        border-radius: var(--card-radius);
+    }
+}
+
+/* --------- */
+/* Scrollbar */
+/* --------- */
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 1em;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--lightest);
+    border-radius: 1em;
+}
+::-webkit-scrollbar-track {
+    --scroll-deg: 0deg;
+    background: linear-gradient(var(--scroll-deg), var(--lighter) 0%, var(--dark) 1%, var(--dark) 99%, var(--lighter) 100%);
+}
+::-webkit-scrollbar-track:horizontal {
+    --scroll-deg: 90deg;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--lightest-hover);
+}
+::-webkit-scrollbar-button, ::-webkit-scrollbar-corner {
+    background-color: var(--lighter);
+}
+::-webkit-scrollbar-button:horizontal:increment {
+    border-start-end-radius: 1em;
+    border-end-end-radius: 1em;
+}
+::-webkit-scrollbar-button:horizontal:decrement {
+    border-start-start-radius: 1em;
+    border-end-start-radius: 1em;
+}
+
+/* firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--lighter) var(--dark);
+}
+
+/* ---------------- */
+/* Header Structure */
+/* ---------------- */
+.headerStruct {
+    width: 100%;
+}
+.headerStruct > * {
+    width: 50%;
+}
+
+/* -------------------------------------------- */
+/* Scroll Arrows (primarily used for the cards) */
+/* -------------------------------------------- */
+.scrollArrows {
+    display: none; /* because no js means no buttons work */
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    pointer-events: none;
+}
+html[scripting-enabled] .scrollArrows {
+    display: flex; /* if yes js means buttons work */
+}
+.scrollArrows button {
+    background: transparent;
+    height: 1.5em;
+    width: 1.5em;
+    border: 0;
+    padding: 0.2em;
+    font-size: 4em;
+    pointer-events: all;
+    cursor: pointer;
+    background-color: var(--light);
+    text-shadow: var(--background) 0.1em 0.1em 0.2em;
+    box-shadow: var(--background) 0.1em 0.1em 0.2em;
+    border-radius: 0; /* due to default button styling */
+}
+.scrollArrows button:first-child::after {
+    content: '◂';
+}
+.scrollArrows button:last-child::after {
+    content: '▸';
+}
+@supports (-moz-appearance: none) {
+    /* can't it just work... */
+    .scrollArrows button {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        padding: 0;
+    }
+}
+.scrollArrows button:first-child {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+.scrollArrows button:last-child {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+.scrollArrowsParent[data-noscroll] .scrollArrows button:first-child, .scrollArrowsParent[data-maxscroll] .scrollArrows button:last-child {
+    visibility: hidden;
+}
+.scrollArrowsParent {
+    position: relative;
+}
+
+/* --------- */
+/* CONTAINER */
+/* --------- */
+
+.card {
+    background-color: var(--darker);
+    margin: var(--card-distance);
+    width: 20em;
+    height: 30em;
+    border-radius: var(--card-radius);
+    padding: 2em;
+}
+.wall {
+    background: linear-gradient(135deg, var(--darkest) 90%, var(--darker) 90%, var(--darker) 95%, var(--light) 95%);
+    padding: var(--card-distance);
+    border-radius: var(--wall-radius);
+}
+.margin {
+    margin: var(--card-distance);
+}
+.radius {
+    border-radius: var(--card-radius);
+}
+.radius-little {
+    border-radius: calc(var(--card-radius) * 0.5);
+}
+
+/* ---------------------- */
+/* Headers and Paragraphs */
+/* ---------------------- */
+.headers-center h1, .headers-center h2, .headers-center h3 {
+    text-align: center;
+}
+.headers-margin h1 {
+    margin-bottom: 0.7em;
+}
+.headers-margin h2 {
+    margin-bottom: 0.5em;
+}
+.headers-margin h3 {
+    margin-bottom: 0.3em;
+}
+.paragraphs-margin p {
+    margin-bottom: 1em;
+}
+
+/* --------------- */
+/* Three Info Grid */
+/* --------------- */
+.threeInfoGrid {
+    display: grid;
+    grid-template-areas: "title img" "text text";
+    grid-template-columns: auto 6em;
+    grid-template-rows: 6em auto;
+    gap: 1em !important;
+}
+.threeInfoGrid > :nth-child(1) {
+    grid-area: title;
+}
+.threeInfoGrid > :nth-child(2) {
+    grid-area: img;
+}
+.threeInfoGrid > :nth-child(3) {
+    grid-area: text;
+}
+
+/* ---- */
+/* FLOW */
+/* ---- */
+
+/* flex */
+.row, .dyn-row, .dyn-row-post-reverse {
+    display: flex;
+    flex-direction: row;
+}
+.row-reverse, .dyn-row-reverse, .dyn-row-pre-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.gaps {
+    --current-gap: var(--card-distance);
+    gap: var(--current-gap);
+    padding: var(--current-gap);
+}
+.gaps-no-padding {
+    padding: unset;
+}
+.gaps > * {
+    margin: 0;
+}
+.small-gaps {
+    --current-gap: var(--card-small-distance);
+}
+.nogaps {
+    gap: 0;
+}
+.gaps.gapsLessPadHeight {
+    padding-top: calc(var(--current-gap) * 0.5);
+    padding-bottom: calc(var(--current-gap) * 0.5);
+}
+.space-evenly {
+    justify-content: space-evenly;
+}
+.space-between {
+    justify-content: space-between;
+}
+.centerAlign, .centerAll {
+    align-items: center;
+    align-content: center;
+}
+.centerJustify, .centerAll {
+    justify-content: center;
+}
+.wrap {
+    flex-wrap: wrap;
+}
+.grow {
+    flex-grow: 1;
+}
+
+/* overflow */
+.overflow {
+    overflow: auto;
+}
+.overflow > * {
+    min-width: min-content;
+    min-height: min-content;
+}
+.widthScroll {
+    overflow-x: auto;
+}
+
+/* dynamic margin */
+.dyn-spec-margin {
+    margin: var(--spec-margin);
+    margin-left: var(--spec-margin-left, var(--spec-margin));
+    margin-top: var(--spec-margin-top, var(--spec-margin));
+    margin-right: var(--spec-margin-right, var(--spec-margin));
+    margin-bottom: var(--spec-margin-bottom, var(--spec-margin));
+}
+
+/* ------ */
+/* SIZING */
+/* ------ */
+.size100p {
+    width: 100%;
+    height: 100%;
+}
+.sizeFillAvailable {
+    width: var(--fill-available);
+    height: var(--fill-available);
+}
+.imgSize:not(.limitHeight) {
+    max-width: 100%;
+    height: auto;
+    display: grid;
+}
+.imgSize.limitHeight {
+    max-height: 100%;
+    width: auto;
+}
+.imgContainer {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+}
+.imgContainer.imgLargeWidth {
+    grid-template-columns: var(--img-large);
+}
+.imgContainer.img100pHeight {
+    grid-template-rows: 100%;
+}
+.clickableImages img {
+    cursor: pointer;
+}
+
+/* ------------ */
+/* Tabler Icons */
+/* ------------ */
+.icon-tabler {
+    width: var(--height);
+    height: var(--height);
+    vertical-align: bottom;
+}
+.icon-tabler-parent {
+    white-space-collapse: preserve;
+    line-height: var(--height); /* keep same as SVG size */
+    --height: 2em;
+}
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    column-gap: 0.3em;
+}
+.icon-button > .icon {
+    height: 2em;
+    width: 2em;
+}
+
+/* ------ */
+/* Design */
+/* ------ */
+.clickable {
+    cursor: pointer;
+}
+.colorless-emoji {
+    font-family: OpenSans, NotoEmoji, Arial, Helvetica, sans-serif;
+}
+.channel-link {
+    border-radius: 0.1875em; /* 3px */
+    padding: 0 0.125em; /* 2px */
+    display: inline-flex;
+    flex-direction: row;
+    line-height: normal;
+    background-color: hsl(var(--brand-500-hsl) / 0.3);
+    --brand-500-hsl: 235 calc(1 * 85.6%) 64.7%;
+    color: #d1d1d1;
+    align-items: center;
+    vertical-align: bottom;
+    text-decoration: none;
+}
+.channel-link:hover {
+    text-decoration: underline;
+}
+.channel-link::before {
+    vertical-align: bottom;
+    content: url('data:image/svg+xml,<svg style="width: 1rem; height: 1rem" class="icon-height-limited" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="rgb(209, 209, 209)" fill-rule="evenodd" d="M10.99 3.16A1 1 0 1 0 9 2.84L8.15 8H4a1 1 0 0 0 0 2h3.82l-.67 4H3a1 1 0 1 0 0 2h3.82l-.8 4.84a1 1 0 0 0 1.97.32L8.85 16h4.97l-.8 4.84a1 1 0 0 0 1.97.32l.86-5.16H20a1 1 0 1 0 0-2h-3.82l.67-4H21a1 1 0 1 0 0-2h-3.82l.8-4.84a1 1 0 1 0-1.97-.32L15.15 8h-4.97l.8-4.84ZM14.15 14l.67-4H9.85l-.67 4h4.97Z" clip-rule="evenodd" class=""></path></svg>');
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.25em;
+}
+.button-color-darkest {
+    background-color: var(--darkest);
+}
+
+/* --------------- */
+/* Special Classes */
+/* --------------- */
+.discord-widget {
+    width: 350px;
+}
+
+/* -------- */
+/* Markdown */
+/* -------- */
+.markdown-html h1, .markdown-html h2, .markdown-html h3 {
+    margin-bottom: 0.5em;
+}
+.markdown-html p, .markdown-html ol, .markdown-html ul {
+    margin-bottom: 0.9em;
+}
+.markdown-html p, .markdown-html ol, .markdown-html ul {
+    margin-bottom: 0.9em;
+}
+.markdown-html ul ul, .markdown-html ol ol, .markdown-html ul ol, .markdown-html ol ul {
+    margin-bottom: 0;
+}
+
+/* ------- */
+/* Gallery */
+/* ------- */
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+    > * {
+        position: relative;
+        display: flex;
+        height: 20em;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        > :is(img, video) {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        > div {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            width: 100%;
+            font-size: 1.3em;
+            padding: 0.3em;
+            background: linear-gradient(to top, #0007 50%, transparent);
+        }
+        &:hover > div {
+            opacity: 1;
+        }
+    }
+}
+
+/* ----------- */
+/* Language UI */
+/* ----------- */
+#languageui {
+    position: fixed;
+    inset: 0;
+    width: var(--fill-available);
+    height: var(--fill-available);
+    z-index: 10;
+    backdrop-filter: blur(1em) saturate(50%);
+    opacity: 0;
+    animation: 0.3s ease-in-out 0s 1 normal both running lang-trans;
+    &.fade-out {
+        animation-name: lang-trans-back;
+        animation-duration: 0.15s;
+    }
+    .lang-icons {
+        pointer-events: none;
+    }
+    .lang-icons > a {
+        pointer-events: auto;
+        width: 10em;
+        height: 10em;
+        border-radius: 100vw;
+        cursor: pointer;
+        &:focus-visible {
+            --outline-type: dashed;
+            outline: var(--outline-type) var(--lighter) 0.5em;
+        }
+    }
+    .selected {
+        outline: solid var(--lightest) 0.5em;
+        animation: 2s ease-in-out 0s infinite alternate both running lang-selected;
+    }
+    h1 {
+        text-align: center;
+        font-size: 5em;
+    }
+    p {
+        text-align: center;
+    }
+}
+@keyframes lang-trans {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes lang-trans-back {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes lang-selected {
+    0% {
+        outline: var(--outline-type, solid) var(--lightest) 0.5em;
+    }
+    100% {
+        outline: var(--outline-type, solid) var(--dark) 0.5em;
+    }
+}
+
+/* -------------------- */
+/* MOBILE OPTIMIZATIONS */
+/*   We "love" mobile   */
+/* -------------------- */
+
+@media (max-width: 768px) {
+    /* dyn-row */
+    .dyn-row, .dyn-row-pre-reverse {
+        flex-direction: column;
+    }
+    .dyn-row-reverse, .dyn-row-post-reverse {
+        flex-direction: column-reverse;
+    }
+    /* dyn-align */
+    .dyn-align-center {
+        align-items: center;
+        align-content: center;
+    }
+    /* dyn-text-center */
+    .dyn-text-center {
+        text-align: center;
+    }
+    /* dynamic margin */
+    .dyn-spec-margin {
+        margin: var(--spec-margin-m, (--spec-margin));
+        margin-left: var(--spec-margin-m-left, var(--spec-margin-left, var(--spec-margin)));
+        margin-top: var(--spec-margin-m-top, var(--spec-margin-top, var(--spec-margin)));
+        margin-right: var(--spec-margin-m-right, var(--spec-margin-right, var(--spec-margin)));
+        margin-bottom: var(--spec-margin-m-bottom, var(--spec-margin-bottom, var(--spec-margin)));
+    }
+    /* --------------- */
+    /* Special Classes */
+    /* --------------- */
+    .discord-widget {
+        display: none;
+    }
+}
