@@ -13,3 +13,5 @@ I can't disallow that, can I? That's why it's open source.
 
 
 > funfact this shit is being held together by hopes and dreams! (apparently xd) -Glitchtrap4461
+
+> *not yet, but it's slowly becoming that -Lopolin

@@ -166,6 +166,20 @@ var lang = {
         }
         return langcoderef;
     },
+    gettext: function(stringcode, sellang=undefined) {
+        sellang = sellang ?? lang.selected;
+        const testlangs = Array(sellang, lang.priority[sellang]);
+        let result = undefined;
+        for (let i = 0; i < testlangs.length; i++) {
+            const trythislang = testlangs[i];
+            const findtext = lang.find(stringcode, trythislang);
+            if (findtext) {
+                result = findtext;
+                break;
+            }
+        }
+        return result;
+    },
     init: function() {
         if (!langtext[lang.default]) langtext[lang.default] = {};
         document.querySelectorAll(".text").forEach(item => {
@@ -181,6 +195,7 @@ var lang = {
             langcoderef[langcode[langcode.length-1]] = item.innerHTML;
         });
         lang.changeLang(lang.selected);
+        lang.initialized = true;
     },
     changeLang: function(sellang) {
         if (!lang.available.includes(sellang)) {
@@ -188,25 +203,9 @@ var lang = {
         }
         localStorage.setItem("lang", sellang);
         lang.selected = sellang;
-        function trylang(elm, sellang) {
-            const newtext = lang.find(elm.getAttribute("data-lang"), sellang);
-            if (newtext) {
-                elm.innerHTML = newtext;
-                return true;
-            } else {
-                return false;
-            }
-        }
         document.querySelectorAll(".text").forEach(item => {
-            const testlangs = Array(sellang, lang.priority[sellang]);
-            for (let i = 0; i < testlangs.length; i++) {
-                const trythislang = testlangs[i];
-                if (trylang(item, trythislang)) {
-                    break;
-                }
-            }
+            item.innerHTML = lang.gettext(item.getAttribute("data-lang"), sellang);
         });
-        lang.initialized = true;
     },
     openui: function(event=undefined) {
         if (document.getElementById("languageui") || !lang.initialized) return;
@@ -221,9 +220,9 @@ var lang = {
         langui.addEventListener("keydown", (e) => {if (e.key === "Escape") lang.closeui();});
         // Title & Test
         const langtitle = document.createElement("h1");
-        langtitle.innerHTML = lang.find("languageui.select");
+        langtitle.innerHTML = lang.gettext("languageui.select");
         const langinfo = document.createElement("p");
-        langinfo.innerHTML = lang.find("languageui.info");
+        langinfo.innerHTML = lang.gettext("languageui.info");
         // Buttons
         const langcontainer = document.createElement("div");
         langcontainer.classList.add("dyn-row", "wrap", "gaps", "centerAll", "lang-icons");
