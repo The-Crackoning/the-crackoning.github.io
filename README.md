@@ -7,3 +7,9 @@ So, no license means don't you dare use anything I supply here.
 
 But you're allowed to look at my code and learn from it :3
 I can't disallow that, can I? That's why it's open source.
+
+
+
+
+
+> funfact this shit is being held together by hopes and dreams! (apparently xd) -Glitchtrap4461
